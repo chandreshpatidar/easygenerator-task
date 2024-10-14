@@ -4,7 +4,6 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { AppContextAction, AppContextProviderProps, AppContextState, AppContextValue } from './types';
 import { decodeJwt } from 'jose';
 import { User } from '@/lib/types/user';
-import Header from '@/components/header';
 
 const initialAppContextState: AppContextState = {
   user: null,
@@ -43,12 +42,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     }
   }, [token]);
 
-  return (
-    <AppContext.Provider value={contextValue}>
-      {state.user?._id && <Header />}
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
 };
 
 export const useAppContext = (): AppContextValue => {

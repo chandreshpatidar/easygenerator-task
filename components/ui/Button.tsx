@@ -45,10 +45,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(
           'inline-flex items-center justify-center rounded-lg shadow transition duration-200 ease-in-out focus:outline-none border-none',
+          {
+            'opacity-70 cursor-not-allowed': disabled || isLoading,
+            'hover:opacity-80': !disabled && !isLoading,
+          },
           variantStyles[variant],
           sizeStyles[size],
-          (disabled || isLoading) && 'opacity-70 cursor-not-allowed',
-          !disabled && !isLoading && 'hover:opacity-80',
           className
         )}
         disabled={disabled || isLoading}

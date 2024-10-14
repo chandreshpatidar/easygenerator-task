@@ -8,17 +8,17 @@ import { SIGNIN_FORM_FIELDS } from '../constants/signinFormFields';
 import SigninForm from './SigninForm';
 
 const Signin = () => {
-  const [apiCalling, setApiCalling] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
   const { dispatch } = useAppContext();
   const router = useRouter();
 
   const handleSignup = async (values: typeof SIGNIN_FORM_FIELDS) => {
-    if (apiCalling) {
+    if (loading) {
       return;
     }
 
-    setApiCalling(true);
+    setLoading(true);
 
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
@@ -41,7 +41,7 @@ const Signin = () => {
       console.error(error);
       setApiErrorMessage((error as Error)?.message || 'Something went wrong');
     } finally {
-      setApiCalling(false);
+      setLoading(false);
     }
   };
 
@@ -49,7 +49,7 @@ const Signin = () => {
     <SigninForm
       onSubmit={handleSignup}
       apiErrorMessage={apiErrorMessage}
-      apiCalling={apiCalling}
+      loading={loading}
     />
   );
 };

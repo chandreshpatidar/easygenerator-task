@@ -13,10 +13,10 @@ import ErrorMessage from '@/components/ui/ErrorMessage';
 interface SigninFormProps {
   onSubmit: (values: typeof SIGNIN_FORM_FIELDS) => void;
   apiErrorMessage?: string;
-  apiCalling?: boolean;
+  loading?: boolean;
 }
 
-const SigninForm: React.FC<SigninFormProps> = ({ onSubmit, apiCalling, apiErrorMessage }) => {
+const SigninForm: React.FC<SigninFormProps> = ({ onSubmit, loading, apiErrorMessage }) => {
   return (
     <Formik
       initialValues={SIGNIN_FORM_FIELDS}
@@ -45,7 +45,7 @@ const SigninForm: React.FC<SigninFormProps> = ({ onSubmit, apiCalling, apiErrorM
             <Button
               variant='primary'
               className='mt-2'
-              loading={apiCalling}
+              loading={loading}
             >
               Sign In
             </Button>

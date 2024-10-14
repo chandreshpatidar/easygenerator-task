@@ -8,17 +8,17 @@ import { useAppContext } from '@/lib/store/AppContext';
 import { useRouter } from 'next/navigation';
 
 const Signup = () => {
-  const [apiCalling, setApiCalling] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
   const { dispatch } = useAppContext();
   const router = useRouter();
 
   const handleSignup = async (values: typeof SIGNUP_FORM_FIELDS) => {
-    if (apiCalling) {
+    if (loading) {
       return;
     }
 
-    setApiCalling(true);
+    setLoading(true);
 
     try {
       const res = await fetch(`${API_URL}/auth/signup`, {
@@ -41,7 +41,7 @@ const Signup = () => {
       console.error(error);
       setApiErrorMessage((error as Error)?.message || 'Something went wrong');
     } finally {
-      setApiCalling(false);
+      setLoading(false);
     }
   };
 
@@ -49,7 +49,7 @@ const Signup = () => {
     <SignupForm
       onSubmit={handleSignup}
       apiErrorMessage={apiErrorMessage}
-      apiCalling={apiCalling}
+      loading={loading}
     />
   );
 };

@@ -7,7 +7,7 @@ import { useAppContext } from '@/lib/store/AppContext';
 
 const Header = () => {
   const [apiCalling, setApiCalling] = useState(false);
-  const { dispatch } = useAppContext();
+  const { dispatch, state } = useAppContext();
   const router = useRouter();
 
   const logout = async () => {
@@ -39,12 +39,14 @@ const Header = () => {
   return (
     <div className='fixed top-0 py-4 px-8 bg-white border-b border-gray-200 w-full'>
       <div className='flex justify-end items-center'>
-        <Button
-          onClick={logout}
-          loading={apiCalling}
-        >
-          Logout
-        </Button>
+        {state.user?._id && (
+          <Button
+            onClick={logout}
+            loading={apiCalling}
+          >
+            Logout
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -21,9 +21,11 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(({ hasErr
         ref={ref}
         type={showPassword ? 'text' : 'password'}
         className={cn(
-          'appearance-none block w-full px-3 py-2 ring-1',
-          hasError ? 'ring-red-300' : 'ring-gray-300',
-          'rounded-md shadow-sm placeholder-gray-400 focus:outline-none hover:ring-indigo-300 focus:ring-indigo-500 text-sm pr-10',
+          'appearance-none block w-full px-3 py-2 ring-1 rounded-md shadow-sm placeholder-gray-400 focus:outline-none hover:ring-indigo-300 focus:ring-indigo-500 text-sm pr-10',
+          {
+            'ring-red-300': hasError,
+            'ring-gray-300': !hasError,
+          },
           className
         )}
         {...props}
