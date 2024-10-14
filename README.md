@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Easygenerator Full Stack Test Task - User Authentication
 
-## Getting Started
+This project implements a basic user authentication module with a **Next.js** frontend and a **Nest.js** backend. Users can sign up, log in, and access a welcome page after authentication.
 
-First, run the development server:
+## Folder Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+.
+├── frontend/            # Next.js frontend app
+└── backend/             # Nest.js backend API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
+- **Next.js 14** (with App Directory)
+- **Tailwind CSS**: Styling
+- **Formik & Yup**: Form handling and validation
+- **Jose**: JWT decoding
+- **Context API**: Global state management
+- **pnpm**: Package manager
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend
+- **Nest.js**: Backend framework
+- **MongoDB**: Database
+- **Mongoose**: ORM
+- **Winston**: Logging
+- **pnpm**: Package manager
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+### Frontend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Navigate to `frontend/` and install dependencies:
+   ```bash
+   cd frontend
+   pnpm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Run the development server:
+   ```bash
+   pnpm dev
+   ```
 
-## Deploy on Vercel
+Frontend runs at `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Navigate to `backend/` and install dependencies:
+   ```bash
+   cd backend
+   pnpm install
+   ```
+
+2. Set up environment variables in `.env`:
+   ```bash
+   MONGO_DB_URI=
+   MONGO_DB_DATABASE=
+   ```
+
+3. Run the backend server:
+   ```bash
+   pnpm start:dev
+   ```
+
+Backend runs at `http://localhost:3333`.
+
+## Notes
+
+- Frontend: Sign-up and sign-in forms with form validation.
+- Backend: Handles authentication via JWT, with secure password hashing.
+- Ensure both apps run on `localhost:3000` (frontend) and `localhost:3333` (backend) to avoid CORS issues.
+- I stored auth token in cookie with `httpOnly : false` to avoid direct access of token on client side, we can only access this from server components or server compatible files like `routes` or `actions` files.
+
+## Regarding Nice to Have points
+
+- The project uses `TypeScript` for better type safety.
+- `Winston` is configured for logging API requests and responses, including error handling.
+- Security best practices are followed for password hashing and `JWT` usage. Store JWT in `Cookies`.
