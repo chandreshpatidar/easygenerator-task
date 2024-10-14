@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { AppContextProvider } from '@/lib/store/AppContext';
+import { cookies } from 'next/headers';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -19,9 +21,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const token = cookies().get('token')?.value;
+
   return (
     <html lang='en'>
-      <body className={`${geistSans.className} antialiased`}>{children}</body>
+      <body className={`${geistSans.className} antialiased`}>
+        <AppContextProvider token={token}>{children}</AppContextProvider>
+      </body>
     </html>
   );
 }
