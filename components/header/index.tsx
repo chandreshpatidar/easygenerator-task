@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Button from '../ui/Button';
-import { API_URL } from '@/lib/config';
 import { useRouter } from 'next/navigation';
 import { useAppContext } from '@/lib/store/AppContext';
 
@@ -19,7 +18,7 @@ const Header = () => {
     setApiCalling(true);
 
     try {
-      const res = await fetch(`${API_URL}/logout`, {
+      const res = await fetch(`/api/logout`, {
         method: 'POST',
       });
 
