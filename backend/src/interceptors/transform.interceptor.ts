@@ -31,7 +31,7 @@ export class TransformInterceptor<T>
 
           const isProduction = process.env.APP_ENV !== 'development';
 
-          response.cookie('token', data.token, {
+          response.cookie('token', data.accessToken, {
             domain: isProduction ? productionDomain : domain, // Ensure the domain is set to handle subdomains
             maxAge: cookieAge,
             path: '/', // Cookie is available site-wide
