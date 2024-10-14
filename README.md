@@ -52,7 +52,7 @@ Frontend runs at `http://localhost:3000`.
    pnpm install
    ```
 
-2. Set up environment variables in `.env`:
+2. Set up environment variables in `.env`. First create a `.env` file in root of `backend` directory, then copy and paste content from `.env.example` file to `.env`, then add value for following variables:
    ```bash
    MONGO_DB_URI=
    MONGO_DB_DATABASE=
