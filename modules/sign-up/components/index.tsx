@@ -23,6 +23,7 @@ const Signup = () => {
     try {
       const res = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -30,7 +31,7 @@ const Signup = () => {
       });
       const data = await res.json();
 
-      if (data?.user?.id) {
+      if (data?.user?._id) {
         dispatch({ type: 'SET_USER', payload: data.user });
         router.replace('/');
       } else {

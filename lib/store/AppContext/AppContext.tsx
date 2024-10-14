@@ -34,10 +34,10 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     if (token) {
       const decodedToken = decodeJwt(token) as User;
 
-      if (decodedToken?.id) {
+      if (decodedToken?._id) {
         dispatch({
           type: 'SET_USER',
-          payload: { email: decodedToken?.email, id: decodedToken?.id, name: decodedToken?.name },
+          payload: { email: decodedToken?.email, _id: decodedToken?._id, name: decodedToken?.name },
         });
       }
     }
@@ -45,7 +45,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 
   return (
     <AppContext.Provider value={contextValue}>
-      {state.user?.id && <Header />}
+      {state.user?._id && <Header />}
       {children}
     </AppContext.Provider>
   );
